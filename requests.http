@@ -1,0 +1,19 @@
+###
+@URL=http://localhost:3002/api
+
+###
+GET {{URL}}/blogs
+
+###
+
+POST {{URL}}/blogs
+Content-Type: application/json
+
+{
+  "author": "Davey jones",
+  "url": "http://pirates.com",
+  "title": "Pirates were good, actually"
+}
+
+###
+DELETE {{URL}}/blogs/3
