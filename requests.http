@@ -11,9 +11,18 @@ Content-Type: application/json
 
 {
   "author": "Davey jones",
-  "url": "http://pirates.com",
-  "title": "Pirates were good, actually"
+  "url": "http://pirates.com"
 }
 
 ###
-DELETE {{URL}}/blogs/3
+DELETE {{URL}}/blogs/27
+
+###
+PUT {{URL}}/blogs/2
+Content-Type: application/json
+
+{
+  "likes": 3
+}
+
+###
