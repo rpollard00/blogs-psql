@@ -26,3 +26,15 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{URL}}/users
+
+###
+
+POST {{URL}}/users
+Content-Type: application/json
+
+{
+  "username": "testuser3",
+  "name": "Mike"
+}
