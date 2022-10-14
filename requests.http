@@ -35,6 +35,6 @@ POST {{URL}}/users
 Content-Type: application/json
 
 {
-  "username": "testuser3",
-  "name": "Mike"
+  "username": "testuser4",
+  "name": "Fail"
 }
