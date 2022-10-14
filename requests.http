@@ -1,5 +1,6 @@
 ###
 @URL=http://localhost:3002/api
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyNEBnbWFpbC5jb20iLCJpZCI6NCwiaWF0IjoxNjY1NzY2MTM3fQ.YrH6RVzApWRCqSOzoDTnWko28SGVMb8rgYk-XLHctrs
 
 ###
 GET {{URL}}/blogs
@@ -7,15 +8,18 @@ GET {{URL}}/blogs
 ###
 
 POST {{URL}}/blogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyNEBnbWFpbC5jb20iLCJpZCI6NCwiaWF0IjoxNjY1NzY2NzM4fQ.ws9AvRjj0hIIp99pJRrNoXobzGfnnhm2gJXE8xP2QRE
 Content-Type: application/json
 
 {
+  "title": "This is a cool blog",
   "author": "Davey jones",
   "url": "http://pirates.com"
 }
 
 ###
-DELETE {{URL}}/blogs/27
+DELETE {{URL}}/blogs/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyNEBnbWFpbC5jb20iLCJpZCI6NCwiaWF0IjoxNjY1NzY2NzM4fQ.ws9AvRjj0hIIp99pJRrNoXobzGfnnhm2gJXE8xP2QRE
 
 ###
 PUT {{URL}}/blogs/2
@@ -35,6 +39,24 @@ POST {{URL}}/users
 Content-Type: application/json
 
 {
-  "username": "testuser4",
-  "name": "Fail"
+  "username": "testuser5@gmail.com",
+  "name": "Test User 4"
+}
+
+###
+
+POST {{URL}}/login
+Content-Type: application/json
+
+{
+  "username": "testuser5@gmail.com",
+  "password": "secret"
+}
+
+
+###
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyNEBnbWFpbC5jb20iLCJpZCI6NCwiaWF0IjoxNjY1NzY1NDYwfQ.aoxQGI1tZHONtJg_hECvhUogg3S4KMh-dPpyOkQ5LZs",
+  "username": "testuser4@gmail.com",
+  "name": "Test User 4"
 }
