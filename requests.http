@@ -15,9 +15,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 Content-Type: application/json
 
 {
-  "title": "Another One",
-  "author": "Davey jones2",
-  "url": "http://pirates.com"
+  "title": "Another One Three",
+  "author": "Davey jones",
+  "url": "http://pirates.com",
+  "likes": 11
 }
 
 ###
