@@ -8,7 +8,13 @@ const { SECRET } = require("../util/config")
 // get api/blogs
 router.get("/", async (req, res) => {
   // findAll
-  const blogs = await Blog.findAll()
+  const blogs = await Blog.findAll({
+    attributes: { exclude: ["userId"] },
+    include: {
+      model: User,
+      attributes: ["name"],
+    },
+  })
   console.log(JSON.stringify(blogs, null, 2))
   // response
   res.json(blogs)
