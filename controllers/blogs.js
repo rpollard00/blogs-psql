@@ -6,6 +6,7 @@ const { Blog, User } = require("../models")
 const { Op } = require("sequelize")
 
 const { SECRET } = require("../util/config")
+const { sequelize } = require("../util/db")
 
 // get api/blogs
 router.get("/", async (req, res) => {
@@ -35,6 +36,7 @@ router.get("/", async (req, res) => {
       attributes: ["name"],
     },
     where,
+    order: sequelize.literal("likes DESC"),
   })
   console.log(JSON.stringify(blogs, null, 2))
   // response
