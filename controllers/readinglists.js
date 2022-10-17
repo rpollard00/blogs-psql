@@ -1,7 +1,8 @@
 const router = require("express").Router()
 //const jwt = require("jsonwebtoken")
 
-const { UserBlogs } = require("../models")
+const { UserBlogs, Blog, User } = require("../models")
+const { tokenExtractor } = require("../util/middleware")
 
 //const { Op } = require("sequelize")
 
@@ -19,20 +20,42 @@ router.post("/", async (req, res, next) => {
   }
 })
 
-module.exports = router
+router.put("/:id", tokenExtractor, async (req, res, next) => {
+  try {
+    // get readingList entry based on id param
+    const entryToMark = await UserBlogs.findByPk(req.params.id)
 
-// router.post("/", tokenExtractor, async (req, res, next) => {
-//   try {
-//     console.log(req.body)
-//     const user = await User.findByPk(req.decodedToken.id)
-//     console.log(user)
-//     const blog = await Blog.create({
-//       ...req.body,
-//       userId: user.id,
-//       year: new Date().getYear() + 1900,
-//     })
-//     res.json(blog)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+    // get user with readingList entries
+    const user = await User.findByPk(req.decodedToken.id, {
+      include: [
+        {
+          model: Blog,
+          as: "reading_list",
+          attributes: ["id"],
+          through: {
+            attributes: ["blogId", "read"],
+          },
+        },
+      ],
+    })
+
+    // list of blogIds in users reading list
+    const readingList = user.reading_list.map(blog => blog.user_blogs.blogId)
+
+    //  is the blogId of the given user_blogs(readingList) entry in the users reading list
+    const blogInReadingList = readingList.includes(entryToMark.blogId)
+
+    if (!blogInReadingList) {
+      res.status(400).send()
+    }
+
+    // update the readingList entry in the db and return that as the result
+    entryToMark.read = Boolean(req.body.read)
+    await entryToMark.save()
+    res.json(entryToMark)
+  } catch (error) {
+    next(error)
+  }
+})
+
+module.exports = router
