@@ -71,7 +71,7 @@ router.post("/", tokenExtractor, async (req, res, next) => {
     const blog = await Blog.create({
       ...req.body,
       userId: user.id,
-      date: new Date(),
+      year: new Date().getYear() + 1900,
     })
     res.json(blog)
   } catch (error) {

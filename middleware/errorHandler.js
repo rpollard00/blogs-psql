@@ -7,10 +7,20 @@ const errorHandler = (error, req, res, next) => {
 
   if (error.name === "SequelizeValidationError") {
     const errorTypeName = error.errors[0].validatorName
+    const errorTypeField = error.errors[0].path
 
     if (errorTypeName === "isEmail") {
       return res.status(400).send({
         error: "Unable to create user. Username must be a valid email address.",
+      })
+    }
+
+    if (
+      errorTypeField === "year" &&
+      (errorTypeName === "max" || errorTypeName === "min")
+    ) {
+      return res.status(400).send({
+        error: "Invalid date, before 1991 or after current year.",
       })
     }
 
