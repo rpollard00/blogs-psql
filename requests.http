@@ -15,10 +15,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 Content-Type: application/json
 
 {
-  "title": "Another One With fail",
-  "author": "Davey jones",
-  "url": "http://pirates.com",
-  "likes": 0
+  "title": "Star Wars 2",
+  "author": "Qui-Gon",
+  "url": "http://starwars.com",
+  "likes": 12
 }
 
 ###
@@ -43,8 +43,8 @@ POST {{URL}}/users
 Content-Type: application/json
 
 {
-  "username": "testuser1@gmail.com",
-  "name": "Test User 1"
+  "username": "testuser2@gmail.com",
+  "name": "Test User 2"
 }
 
 ###
@@ -63,4 +63,13 @@ Content-Type: application/json
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyNEBnbWFpbC5jb20iLCJpZCI6NCwiaWF0IjoxNjY1NzY1NDYwfQ.aoxQGI1tZHONtJg_hECvhUogg3S4KMh-dPpyOkQ5LZs",
   "username": "testuser4@gmail.com",
   "name": "Test User 4"
+}
+
+###
+POST {{URL}}/readinglists
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "blogId": 5
 }
